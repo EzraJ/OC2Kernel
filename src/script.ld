@@ -15,25 +15,26 @@ SECTIONS {
   . = ORIGIN(ram);
 
   .text : { 
-    *(.text.init)
-    *(.text .text.*)
+    *(.text.init) 
+    *(.text .text.*) 
   } >ram AT>ram :text
 
-  PROVIDE(_global_pointer = .);
+  PROVIDE(_global_pointer = .); 
 
-  .rodata : {
+  .rodata : { 
     *(.rodata .rodata.*)
-  } >ram AT>ram :text
+  } >ram AT>ram :text 
 
   .data : {
     *(.sdata .sdata.*) *(.data .data.*)
   } >ram AT>ram :data
 
-  .bss :{ 
-    PROVIDE(_bss_start = .);
+  .bss :{
+    PROVIDE(_bss_start = .); 
     *(.sbss .sbss.*) *(.bss .bss.*)
-    PROVIDE(_bss_end = .);
+    PROVIDE(_bss_end = .); 
   } >ram AT>ram :bss
-  . = ALIGN(16);
-    PROVIDE(_init_stack_top = . + 0x1000);
+  . = ALIGN(16); 
+    PROVIDE(_init_stack_top = . + 0x1000); 
+    PROVIDE(end = .);
 }
